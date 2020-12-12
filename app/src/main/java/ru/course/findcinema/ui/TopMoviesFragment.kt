@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.fragment_top_movies.*
 import ru.course.findcinema.MainActivity
 import ru.course.findcinema.Movie
 import ru.course.findcinema.R
+import ru.course.findcinema.feature.search.ui.SearchFragment
 
 class TopMoviesFragment : Fragment(R.layout.fragment_top_movies) {
 
@@ -20,10 +21,15 @@ class TopMoviesFragment : Fragment(R.layout.fragment_top_movies) {
         btnGoToDetails.setOnClickListener {
             requireFragmentManager().beginTransaction()
                 .replace(R.id.container, MovieDetailsFragment.newInstance(movie))
-                .addToBackStack("MovieDetailsFragment")
+                .addToBackStack("MovieDetailsFragmeДелоnt")
                 .commit()
         }
 
-        (activity as MainActivity).helloFragment()
+        btnGoSearch.setOnClickListener {
+            requireFragmentManager().beginTransaction()
+                .replace(R.id.container, SearchFragment())
+                .addToBackStack("SearchFragment")
+                .commit()
+        }
     }
 }

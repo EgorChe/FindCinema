@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feature.search.ui.SearchFragment">
+
+    <RadioGroup
+        android:id="@+id/rgType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/rbAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Все" />
+
+        <RadioButton
+            android:id="@+id/rbFilm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Фильмы" />
+
+        <RadioButton
+            android:id="@+id/rbTvShow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Шоу" />
+
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/etRatingFrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Рейтинг от"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rgType" />
+
+    <EditText
+        android:id="@+id/etRatingTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Рейтинг до"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etRatingFrom" />
+
+    <EditText
+        android:id="@+id/etYearFrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Год от"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etRatingTo" />
+
+    <EditText
+        android:id="@+id/etYearTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Год до"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etYearFrom" />
+
+    <Button
+        android:id="@+id/btnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Поиск"
+        app:layout_constraintTop_toBottomOf="@id/etYearTo"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
