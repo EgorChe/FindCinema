@@ -2,7 +2,7 @@ package ru.course.findcinema
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import ru.course.findcinema.ui.TopMoviesFragment
+import ru.course.findcinema.feature.top.ui.TopMoviesFragment
 
 class MainActivity : AppCompatActivity() {
 
