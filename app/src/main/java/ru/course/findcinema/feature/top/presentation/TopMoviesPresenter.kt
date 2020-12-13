@@ -3,14 +3,13 @@ package ru.course.findcinema.feature.top.presentation
 import moxy.MvpPresenter
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
-import moxy.viewstate.strategy.AddToEndStrategy
 import moxy.viewstate.strategy.OneExecutionStateStrategy
 import moxy.viewstate.strategy.StateStrategyType
 import ru.course.findcinema.Movie
 
 class TopMoviesPresenter : MvpPresenter<TopMoviesView>() {
 
-    private val movies = mutableListOf(
+    private var movies = listOf(
         Movie("Джентельмены", "2020"),
         Movie("Крик", "2002"),
         Movie("Молчание ягнят", "2005"),
@@ -23,8 +22,8 @@ class TopMoviesPresenter : MvpPresenter<TopMoviesView>() {
     }
 
     fun onMovieClick(movie: Movie) {
-        movies.remove(movie)
-        viewState.deleteItem(movie)
+        movies = movies.filter { it != movie }
+        viewState.showMovies(movies)
 //        viewState.openDetailScreen(movie)
     }
 }
@@ -36,8 +35,5 @@ interface TopMoviesView : MvpView {
 
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun openDetailScreen(movie: Movie)
-
-    @StateStrategyType(AddToEndStrategy::class)
-    fun deleteItem(movie: Movie)
 
 }

@@ -37,12 +37,13 @@ class TopMoviesFragment : MvpAppCompatFragment(R.layout.fragment_top_movies), To
         }
     }
 
-    override fun showMovies(movies: List<Movie>) {
-        moviesAdapter?.setData(movies)
+    override fun onDestroyView() {
+        moviesAdapter = null
+        super.onDestroyView()
     }
 
-    override fun deleteItem(movie: Movie) {
-        moviesAdapter?.deleteItem(movie)
+    override fun showMovies(movies: List<Movie>) {
+        moviesAdapter?.submitList(movies)
     }
 
     override fun openDetailScreen(movie: Movie) {
