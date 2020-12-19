@@ -8,10 +8,11 @@ import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 import ru.course.findcinema.Movie
 import ru.course.findcinema.R
+import ru.course.findcinema.feature.detail.ui.MovieDetailsFragment
+import ru.course.findcinema.feature.favorites.ui.FavoritesFragment
 import ru.course.findcinema.feature.search.ui.SearchFragment
 import ru.course.findcinema.feature.top.presentation.TopMoviesPresenter
 import ru.course.findcinema.feature.top.presentation.TopMoviesView
-import ru.course.findcinema.ui.MovieDetailsFragment
 
 class TopMoviesFragment : MvpAppCompatFragment(R.layout.fragment_top_movies), TopMoviesView {
 
@@ -27,6 +28,12 @@ class TopMoviesFragment : MvpAppCompatFragment(R.layout.fragment_top_movies), To
             requireFragmentManager().beginTransaction()
                 .replace(R.id.container, SearchFragment())
                 .addToBackStack("SearchFragment")
+                .commit()
+        }
+        btnGoFavorites.setOnClickListener {
+            requireFragmentManager().beginTransaction()
+                .replace(R.id.container, FavoritesFragment())
+                .addToBackStack("FavoritesFragment")
                 .commit()
         }
         with(rvTopMovies) {

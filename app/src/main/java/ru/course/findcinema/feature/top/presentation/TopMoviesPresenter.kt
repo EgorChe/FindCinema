@@ -22,9 +22,7 @@ class TopMoviesPresenter : MvpPresenter<TopMoviesView>() {
     }
 
     fun onMovieClick(movie: Movie) {
-        movies = movies.filter { it != movie }
-        viewState.showMovies(movies)
-//        viewState.openDetailScreen(movie)
+        viewState.openDetailScreen(movie)
     }
 }
 
