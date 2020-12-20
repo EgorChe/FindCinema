@@ -7,16 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_search.*
+import moxy.MvpAppCompatFragment
+import moxy.ktx.moxyPresenter
+import moxy.presenter.InjectPresenter
 import ru.course.findcinema.R
 import ru.course.findcinema.feature.search.presentation.SearchPresenter
 import ru.course.findcinema.feature.search.presentation.SearchView
 
 enum class Type { ALL, FILM, TV_SHOWS }
 
-class SearchFragment : Fragment(R.layout.fragment_search), SearchView {
+class SearchFragment : MvpAppCompatFragment(R.layout.fragment_search), SearchView {
 
-
-    private val presenter = SearchPresenter()
+    private val presenter by moxyPresenter { SearchPresenter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
