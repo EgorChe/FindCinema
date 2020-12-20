@@ -22,9 +22,11 @@ class TopMoviesPresenter : MvpPresenter<TopMoviesView>() {
     }
 
     fun onMovieClick(movie: Movie) {
-        movies = movies.filter { it != movie }
-        viewState.showMovies(movies)
-//        viewState.openDetailScreen(movie)
+        viewState.openDetailScreen(movie)
+    }
+
+    fun onFavoritesClick() {
+        viewState.openFavoritesScreen()
     }
 }
 
@@ -36,4 +38,6 @@ interface TopMoviesView : MvpView {
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun openDetailScreen(movie: Movie)
 
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun openFavoritesScreen()
 }
