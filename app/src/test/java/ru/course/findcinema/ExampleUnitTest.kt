@@ -1,8 +1,8 @@
 package ru.course.findcinema
 
+import kotlinx.coroutines.*
 import org.junit.Test
-
-import org.junit.Assert.*
+import kotlin.coroutines.CoroutineContext
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -10,8 +10,46 @@ import org.junit.Assert.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 class ExampleUnitTest {
+
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun coroutinesTest() {
+        runBlocking {
+            Presenter().launch { }
+            val job = launch {
+                testFunc()
+            }
+//            val result: Deferred<String> = async {
+//                "world"
+//            }
+            print("world")
+//            print(result.await())
+        }
     }
+
+    suspend fun testFunc() {
+        delay(1000)
+        print("Hello ")
+    }
+}
+
+class Presenter : CoroutineScope {
+
+    private lateinit var job: Job
+    override val coroutineContext: CoroutineContext
+        get() = Job()
+
+    fun test() {
+        job = launch {
+
+        }
+    }
+
+    fun onCancel() {
+        job.cancel()
+    }
+
+    fun onDestroy() {
+        cancel()
+    }
+
 }
