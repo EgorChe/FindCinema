@@ -3,8 +3,11 @@ package ru.course.findcinema.domain
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import ru.course.findcinema.data.network.MoviesApi
+import javax.inject.Inject
 
-class GetTopMoviesUseCase(private val moviesApi: MoviesApi) {
+class GetTopMoviesUseCase @Inject constructor(
+    private val moviesApi: MoviesApi
+) {
 
     suspend operator fun invoke(): List<Movie> = withContext(Dispatchers.IO) {
         moviesApi.getTopFilms(page = 1).run {

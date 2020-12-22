@@ -4,25 +4,26 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_top_movies.*
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 import ru.course.findcinema.R
-import ru.course.findcinema.di.moviesApi
-import ru.course.findcinema.domain.GetTopMoviesUseCase
 import ru.course.findcinema.domain.Movie
 import ru.course.findcinema.feature.detail.ui.MovieDetailsFragment
 import ru.course.findcinema.feature.favorites.ui.FavoritesFragment
 import ru.course.findcinema.feature.search.ui.SearchFragment
 import ru.course.findcinema.feature.top.presentation.TopMoviesPresenter
 import ru.course.findcinema.feature.top.presentation.TopMoviesView
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class TopMoviesFragment : MvpAppCompatFragment(R.layout.fragment_top_movies), TopMoviesView {
 
+    @Inject
+    lateinit var topMoviesPresenter: TopMoviesPresenter
+    private val presenter: TopMoviesPresenter by moxyPresenter { topMoviesPresenter }
     private var moviesAdapter: TopMoviesAdapter? = null
-    private val presenter: TopMoviesPresenter by moxyPresenter {
-        TopMoviesPresenter(GetTopMoviesUseCase(moviesApi))
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

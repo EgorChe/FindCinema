@@ -1,19 +1,20 @@
 package ru.course.findcinema.feature.favorites.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.favorites_fragment.*
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 import ru.course.findcinema.R
-import ru.course.findcinema.data.FavoritesDaoImpl
 import ru.course.findcinema.domain.Movie
 import ru.course.findcinema.feature.favorites.presentation.FavoritesPresenter
 import ru.course.findcinema.feature.favorites.presentation.FavoritesView
 import ru.course.findcinema.feature.top.ui.TopMoviesAdapter
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class FavoritesFragment : MvpAppCompatFragment(R.layout.favorites_fragment), FavoritesView {
 
     companion object {
@@ -21,13 +22,10 @@ class FavoritesFragment : MvpAppCompatFragment(R.layout.favorites_fragment), Fav
         fun newInstance() = FavoritesFragment()
     }
 
-    private val presenter: FavoritesPresenter by moxyPresenter {
-        FavoritesPresenter(
-            favoritesDao = FavoritesDaoImpl(
-                requireContext().getSharedPreferences("data", Context.MODE_PRIVATE)
-            )
-        )
-    }
+    @Inject
+    lateinit var favoritesPresenter: FavoritesPresenter
+
+    private val presenter: FavoritesPresenter by moxyPresenter { favoritesPresenter }
 
     private var favoritesAdapter: TopMoviesAdapter? = null
 

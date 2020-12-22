@@ -9,9 +9,11 @@ import moxy.viewstate.strategy.StateStrategyType
 import ru.course.findcinema.domain.GetTopMoviesUseCase
 import ru.course.findcinema.domain.Movie
 import ru.course.findcinema.extensions.launchWithErrorHandler
+import javax.inject.Inject
 
-class TopMoviesPresenter(private val getTopMoviesUseCase: GetTopMoviesUseCase) :
-    MvpPresenter<TopMoviesView>() {
+class TopMoviesPresenter @Inject constructor(
+    private val getTopMoviesUseCase: GetTopMoviesUseCase
+) : MvpPresenter<TopMoviesView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()

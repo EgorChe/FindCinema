@@ -6,8 +6,9 @@ import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType
 import ru.course.findcinema.data.FavoritesDao
 import ru.course.findcinema.domain.Movie
+import javax.inject.Inject
 
-class FavoritesPresenter(
+class FavoritesPresenter @Inject constructor(
     private val favoritesDao: FavoritesDao
 ) : MvpPresenter<FavoritesView>() {
 
