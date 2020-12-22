@@ -1,4 +1,4 @@
-package ru.course.findcinema
+package ru.course.findcinema.domain
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

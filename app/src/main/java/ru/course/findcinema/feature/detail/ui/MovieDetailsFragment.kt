@@ -6,9 +6,9 @@ import android.view.View
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
-import ru.course.findcinema.Movie
 import ru.course.findcinema.R
 import ru.course.findcinema.data.FavoritesDaoImpl
+import ru.course.findcinema.domain.Movie
 import ru.course.findcinema.feature.detail.presentation.MovieDetailPresenter
 import ru.course.findcinema.feature.detail.presentation.MovieDetailView
 

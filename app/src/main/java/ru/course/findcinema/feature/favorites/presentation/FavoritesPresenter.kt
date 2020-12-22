@@ -4,8 +4,8 @@ import moxy.MvpPresenter
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType
-import ru.course.findcinema.Movie
 import ru.course.findcinema.data.FavoritesDao
+import ru.course.findcinema.domain.Movie
 
 class FavoritesPresenter(
     private val favoritesDao: FavoritesDao

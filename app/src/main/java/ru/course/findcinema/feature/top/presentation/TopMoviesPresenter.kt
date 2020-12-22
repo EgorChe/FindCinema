@@ -2,23 +2,27 @@ package ru.course.findcinema.feature.top.presentation
 
 import moxy.MvpPresenter
 import moxy.MvpView
+import moxy.presenterScope
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.OneExecutionStateStrategy
 import moxy.viewstate.strategy.StateStrategyType
-import ru.course.findcinema.Movie
+import ru.course.findcinema.domain.GetTopMoviesUseCase
+import ru.course.findcinema.domain.Movie
+import ru.course.findcinema.extensions.launchWithErrorHandler
 
-class TopMoviesPresenter : MvpPresenter<TopMoviesView>() {
-
-    private var movies = listOf(
-        Movie("Джентельмены", "2020"),
-        Movie("Крик", "2002"),
-        Movie("Молчание ягнят", "2005"),
-        Movie("Властелин Колец", "2001")
-    )
+class TopMoviesPresenter(private val getTopMoviesUseCase: GetTopMoviesUseCase) :
+    MvpPresenter<TopMoviesView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        viewState.showMovies(movies)
+        presenterScope.launchWithErrorHandler(block = {
+            viewState.showLoading(isShow = true)
+            val movies = getTopMoviesUseCase()
+            viewState.showMovies(movies)
+            viewState.showLoading(isShow = false)
+        }, onError = {
+            viewState.showLoading(isShow = false)
+        })
     }
 
     fun onMovieClick(movie: Movie) {
@@ -40,4 +44,7 @@ interface TopMoviesView : MvpView {
 
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun openFavoritesScreen()
+
+    @StateStrategyType(AddToEndSingleStrategy::class)
+    fun showLoading(isShow: Boolean)
 }

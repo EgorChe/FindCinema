@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.top_movies_item.*
-import ru.course.findcinema.Movie
 import ru.course.findcinema.R
+import ru.course.findcinema.domain.Movie
 
 class TopMoviesAdapter(
     private val onMovieClick: (Movie) -> Unit

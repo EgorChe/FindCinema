@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.favorites_fragment.*
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
-import ru.course.findcinema.Movie
 import ru.course.findcinema.R
 import ru.course.findcinema.data.FavoritesDaoImpl
+import ru.course.findcinema.domain.Movie
 import ru.course.findcinema.feature.favorites.presentation.FavoritesPresenter
 import ru.course.findcinema.feature.favorites.presentation.FavoritesView
 import ru.course.findcinema.feature.top.ui.TopMoviesAdapter
