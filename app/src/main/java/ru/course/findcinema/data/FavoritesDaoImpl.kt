@@ -4,7 +4,7 @@ import android.content.SharedPreferences
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import ru.course.findcinema.Movie
+import ru.course.findcinema.domain.Movie
 
 class FavoritesDaoImpl(
     private val sharedPreferences: SharedPreferences

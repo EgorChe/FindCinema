@@ -1,17 +1,19 @@
 package ru.course.findcinema.feature.detail.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
-import ru.course.findcinema.Movie
 import ru.course.findcinema.R
-import ru.course.findcinema.data.FavoritesDaoImpl
+import ru.course.findcinema.domain.Movie
 import ru.course.findcinema.feature.detail.presentation.MovieDetailPresenter
+import ru.course.findcinema.feature.detail.presentation.MovieDetailPresenterFactory
 import ru.course.findcinema.feature.detail.presentation.MovieDetailView
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MovieDetailsFragment : MvpAppCompatFragment(R.layout.fragment_movie_details),
     MovieDetailView {
 
@@ -27,13 +29,10 @@ class MovieDetailsFragment : MvpAppCompatFragment(R.layout.fragment_movie_detail
             }
     }
 
+    @Inject
+    lateinit var movieDetailPresenterFactory: MovieDetailPresenterFactory
     private val presenter: MovieDetailPresenter by moxyPresenter {
-        MovieDetailPresenter(
-            movie = arguments?.getParcelable(MOVIE)!!,
-            favoritesDao = FavoritesDaoImpl(
-                requireContext().getSharedPreferences("data", Context.MODE_PRIVATE)
-            )
-        )
+        movieDetailPresenterFactory.create(arguments?.getParcelable(MOVIE)!!)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,3 +53,4 @@ class MovieDetailsFragment : MvpAppCompatFragment(R.layout.fragment_movie_detail
         )
     }
 }
+

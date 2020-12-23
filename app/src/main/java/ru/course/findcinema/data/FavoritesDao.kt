@@ -1,6 +1,6 @@
 package ru.course.findcinema.data
 
-import ru.course.findcinema.Movie
+import ru.course.findcinema.domain.Movie
 
 interface FavoritesDao {
 

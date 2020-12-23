@@ -6,11 +6,12 @@ import moxy.presenterScope
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.OneExecutionStateStrategy
 import moxy.viewstate.strategy.StateStrategyType
-import ru.course.findcinema.Movie
 import ru.course.findcinema.domain.GetTopMoviesUseCase
+import ru.course.findcinema.domain.Movie
 import ru.course.findcinema.extensions.launchWithErrorHandler
+import javax.inject.Inject
 
-class TopMoviesPresenter(
+class TopMoviesPresenter @Inject constructor(
     private val getTopMoviesUseCase: GetTopMoviesUseCase
 ) : MvpPresenter<TopMoviesView>() {
 
